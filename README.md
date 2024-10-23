@@ -1,6 +1,6 @@
-# Analisador de Código Python
+# TreePy
 
-Este projeto é um analisador de código Python que utiliza a biblioteca `tkinter` para criar uma interface gráfica. Ele permite que o usuário abra arquivos de código (Python, TXT, HTML) e gera uma árvore binária que exibe onde cada função e variável são declaradas.
+TreePy é um analisador de código Python que utiliza a biblioteca `tkinter` para criar uma interface gráfica. Ele permite que o usuário abra arquivos de código (Python, TXT, HTML) e gera uma árvore binária que exibe onde cada função e variável são declaradas.
 
 ## Funcionalidades
 
@@ -24,11 +24,11 @@ Este projeto é um analisador de código Python que utiliza a biblioteca `tkinte
 
 1. Clone este repositório:
     ```bash
-    git clone https://github.com/seu-usuario/analisador-codigo-python.git
+    git clone https://github.com/GuilhermeFerreira42/TreePy.git
     ```
 2. Navegue até o diretório do projeto:
     ```bash
-    cd analisador-codigo-python
+    cd TreePy
     ```
 3. Instale as dependências necessárias:
     ```bash
@@ -39,7 +39,7 @@ Este projeto é um analisador de código Python que utiliza a biblioteca `tkinte
 
 1. Execute o script principal:
     ```bash
-    python analisador_codigo.py
+    python treepy.py
     ```
 2. Use a interface gráfica para abrir um arquivo e visualizar a árvore binária.
 
@@ -58,4 +58,3 @@ Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICEN
 ## Créditos
 
 Este projeto foi desenvolvido com a ajuda do Copilot da Microsoft.
-
