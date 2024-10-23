@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, filedialog
+from tkinterdnd2 import DND_FILES, TkinterDnD
 import ast
 
 # Classe para criar nós da árvore
@@ -74,12 +75,11 @@ def atualizar_arvore(nivel):
     tree_output = print_tree(filtered_root)
     entry_resultado.insert(tk.END, tree_output)
 
-def processar_arquivo():
+def processar_arquivo(filepath):
     """
     Função para abrir um arquivo, processar o código e exibir a árvore de declarações.
     """
     global codigo_original
-    filepath = filedialog.askopenfilename()
     if filepath:
         with open(filepath, 'r', encoding='utf-8') as file:
             codigo_original = file.read()
@@ -91,6 +91,13 @@ def processar_arquivo():
         
         entry_resultado.delete("1.0", tk.END)
         entry_resultado.insert(tk.END, tree_output)
+
+def on_drop(event):
+    """
+    Função para lidar com o evento de arrastar e soltar arquivos.
+    """
+    file_path = event.data.strip('{}')
+    processar_arquivo(file_path)
 
 def copiar(widget):
     """
@@ -141,13 +148,19 @@ def criar_botoes_niveis(frame):
     ttk.Button(frame, text="Nível 3", command=lambda: atualizar_arvore(3)).grid(row=0, column=2, padx=5)
 
 # Configuração da janela principal
-root = tk.Tk()
-root.title("Analisador de Código Python")
+root = TkinterDnD.Tk()
+root.title("TreePy")
 root.geometry("600x650")
 
-# Botão para abrir o arquivo e processar o texto
-botao_abrir = ttk.Button(root, text="Abrir Arquivo", command=processar_arquivo)
-botao_abrir.pack(pady=10)
+# Área de arrastar e soltar arquivos
+frame_dragdrop = ttk.Frame(root)
+frame_dragdrop.pack(pady=10, fill=tk.BOTH, expand=True)
+
+label_dragdrop = ttk.Label(frame_dragdrop, text="Arraste e solte um arquivo aqui")
+label_dragdrop.pack(pady=10)
+
+root.drop_target_register(DND_FILES)
+root.dnd_bind('<<Drop>>', on_drop)
 
 # Rótulo e campo para mostrar o texto processado
 label_resultado = ttk.Label(root, text="Resultado:")
